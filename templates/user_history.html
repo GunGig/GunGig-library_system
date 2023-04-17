@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block title %} 借阅记录 {% endblock %}
+{% block link %}
+<a href="{{ url_for('user.user_main_page', number=session.get('number'))}}"> 返回 </a>
+{% endblock %}
+{% block body %}
+<h2>在借书籍</h2>
+<table width="600" border="1" align="center">
+    <tr>
+        <th align="center"> 编码</th>
+        <th align="center"> 书名</th>
+        <th align="center"> 借书日期</th>
+        <th align="center"> 到期日期</th>
+        <th align="center"> 借阅状态</th>
+        <th align="center"> 续借</th>
+    </tr>
+    {% if leases %}
+    {% for lease in leases %}
+    <tr>
+        <th align="center"> {{lease.book_id}}</th>
+        <th align="center"> {{lease.book_name}}</th>
+        <th align="center"> {{lease.borrow_date}}</th>
+        <th align="center"> {{lease.expired_date}}</th>
+        <th align="center"> {% if lease.expired %} 超期 {% else %} 正常 {% endif %}</th>
+        {% if lease.renewal_cnt < 3 %}
+        <th align="center"><a
+                href="{{url_for('user.user_history',number=session.get('number'))}}?action=renewal&bid={{lease.book_id}}">续借</a>
+        </th>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+<h2>预借书籍</h2>
+<table width="600" border="1" align="center">
+    <tr>
+        <th align="center"> 编号</th>
+        <th align="center"> 书名</th>
+        <th align="center"> 预借日期</th>
+    </tr>
+    {% if orders %}
+    {% for order in orders %}
+    <tr>
+        <th align="center"> {{order.book_id}}</th>
+        <th align="center"> {{order.book_name}}</th>
+        <th align="center"> {{order.order_date}}</th>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+<h2>已还书籍</h2>
+<table width="600" border="1" align="center">
+    <tr>
+        <th align="center"> 编号</th>
+        <th align="center"> 书名</th>
+        <th align="center"> 借书日期</th>
+        <th align="center"> 还书日期</th>
+        <th align="center"> 借阅状态</th>
+    </tr>
+    {% if histories %}
+    {% for history in histories %}
+    <tr>
+        <th align="center"> {{history.book_id}}</th>
+        <th align="center"> {{history.book_name}}</th>
+        <th align="center"> {{history.borrow_date}}</th>
+        <th align="center"> {{history.return_date}}</th>
+        <th align="center"> 已归还</th>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %} 删除书目 {% endblock %}
+{% block link %}
+<a href="{{ url_for('manager.manager_books')}}"> 返回 </a>
+{% endblock %}
+
+{% block body %}
+<h2> 删除书目 </h2>
+<form action="" method=post>
+    请输入图书编号:</br>
+    <input type=text name="book_id" size=30> </br></br>
+    <input type=submit value="删除">
+</form>
+{% endblock %}

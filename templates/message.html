@@ -1,0 +1,12 @@
+{% if message%}
+  {% if message.type == 0 %}
+  {% elif message.type == 1 %}
+  <div class="success">
+    {{message.text}}
+  </div>
+  {% elif message.type == -1 %}
+  <div class="error">
+    <strong>Errror : </strong> {{message.text}}
+  </div>
+  {% endif %}
+{% endif %}

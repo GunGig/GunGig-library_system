@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block title%} 超期查询 {% endblock %}
+{% block link%}
+<a href="{{ url_for('manager.manager_books')}}"> 返回 </a>
+{%  endblock%}
+{% block body%}
+<h2> 超期列表 </h2>
+<table width="600" border="1" , align="center">
+    <tr>
+        <th align="center"> 学号</th>
+        <th align="center"> 姓名</th>
+        <th align="center"> ISBN</th>
+        <th align="center"> 书名</th>
+        <th align="center"> 应还日期</th>
+    </tr>
+    {% for lease in leases %}
+    <tr>
+        <td align="center"> {{lease.user_number}}</td>
+        <td align="center"> {{lease.user_name}}</td>
+        <td align="center"> {{lease.book_ISBN}}</td>
+        <td align="center"> {{lease.book_name}}</td>
+        <td align="center"> {{lease.expired_date}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock%}

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %} 借阅管理 {% endblock %}
+{% block link %}
+{% if book %}
+<a href="{{ url_for('manager.manager_books') }}"> 返回 </a>
+{% endif %}
+{% endblock %}
+{% block body %}
+<h2> 借阅管理 </h2>
+{% if book %}
+<li> ISBN {{book.ISBN}}</li>
+<li> 书名 {{book.name}}</li>
+<li> 作者 {{book.author}}</li>
+<li> 出版社 {{book.publisher}}</li>
+{% endif %}
+{% if lease  %}
+借 阅 人: {{lease.user_number}}<br/>
+借阅日期: {{lease.borrow_date}}<br/>
+还书日期: {{lease.expired_date}}
+<form action="" method="POST">
+    <input type="submit" name="return" value="归还">
+</form>
+{% elif order  %}
+预 借 人: {{order.user_number}}<br/>
+预借日期: {{order.order_date}}<br/>
+<div class="grid-container" width="100px">
+    <form action="" method="POST">
+        <input type="submit" name="order_accept" value="接受">
+        <input type="submit" name="order_reject" value="拒绝">
+    </form>
+</div>
+{% else %}
+<form action="" method="POST">
+    借书人学号: </br>
+    <input type=text name="number" size=30></br></br>
+    <input type="submit" name="lend" value="借出">
+</form>
+{% endif %}
+{% endblock %} 

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %} 图书主页 {% endblock %}
+{% block link %}
+<a href="{{ url_for('manager.manager_books') }}"> 返回 </a> |
+<a href="{{ url_for('manager.manager_book_modify', book_id=book.id) }}"> 修改 </a>
+{% endblock %}
+{% block body  %}
+<h2> 图书信息 </h2>
+<li> ISBN {{book.ISBN}}</li>
+<li> 书名 {{book.name}}</li>
+<li> 作者 {{book.author}}</li>
+<li> 出版社 {{book.publisher}}</li>
+<h2> 借阅信息 </h2>
+{% if lease %}
+<li><a href="{{ url_for('manager.manager_lease', book_id=book.id) }}"> 借出 </a></li>
+{% else %}
+<li><a href="{{ url_for('manager.manager_lease', book_id=book.id) }}"> 在库 </a></li>
+{% endif %}
+<h2>读者评论</h2>
+<table width="600" border="1" , align="center">
+    <tr>
+        <th align="center"> 学号</th>
+        <th align="center"> 评论</th>
+        <th align="center"> 操作</th>
+    </tr>
+    {% for comment in comments %}
+    <tr>
+        <td align="center"> {{comment.user_number}}</td>
+        <td align="center"> {{comment.content}}</td>
+        <td align="center"><a
+                href="{{url_for('manager.manager_book', book_id=book.id)}}?action=delete_comment&cid={{comment.id}}">删除</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

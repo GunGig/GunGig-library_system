@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block title%} 用户管理 {% endblock %} {# title：浏览器标签页标题 #}
+{% block link%}
+<a href="{{ url_for('manager.manager_main_page')}}"> 返回 </a>
+{%  endblock%}
+{% block body%}
+<h2> 用户管理 </h2>
+<table width="600" border="1" align="center">
+    <tr>
+        <th align="center"> 学号</th>
+        <th align="center"> 姓名</th>
+        <th align="center"> 用户信息</th>
+    </tr>
+    {% for user in users%}
+    <tr>
+        <td align="center"> {{user.number}}</td>
+        <td align="center"> {{user.username}}</td>
+        <td align="center"><a href="{{ url_for('manager.manager_user', number=user.number)}}"> 点击进入 </a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock%}

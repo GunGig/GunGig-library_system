@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block title%} 图书管理 {% endblock %}
+{% block link%}
+<a href="{{ url_for('user.user_main_page', number=session.get('number'))}}"> 返回 </a>
+{%  endblock%}
+{% block body%}
+<h2> 新书信息 </h2>
+<table width="600" border="1" , align="center">
+    <tr>
+        <th align="center"> ISBN</th>
+        <th align="center"> 书名</th>
+        <th align="center"> 作者</th>
+        <th align="center"> 出版商</th>
+        <th align="center"> 入库日期</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td align="center"> {{book.ISBN}}</td>
+        <td align="center"> {{book.name}}</td>
+        <td align="center"> {{book.author}}</td>
+        <td align="center"> {{book.publisher}}</td>
+        <td align="center"> {{book.add_date}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock%}

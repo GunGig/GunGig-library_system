@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title%} 查询  {% endblock %}
+{% block link %}
+<a href="{{ url_for('user.user_main_page', number=session.get('number')) }}"> 返回 </a>
+{% endblock %}
+{% block body %}
+<h2> 查询 </h2>
+    <form action="" method="POST">
+            <select name="item">
+                <option value="name"> 书名</option>
+                <option value="author"> 作者</option>
+            </select>
+            <input type="text" name="query" size="80">
+            <input type="submit" value="查询">
+    </form>
+</br>
+
+<table width="600" border="1" align="center">
+    <tr>
+        <th align="center"> 编号</th>
+        <th align="center"> ISBN</th>
+        <th align="center"> 书名</th>
+        <th align="center"> 作者</th>
+        <th align="center"> 出版商</th>
+        <th align="center"> 详情</th>
+    </tr>
+    {% if books %}
+        {% for book in books %}
+        <tr>
+            <td align="center"> {{book.id}}</td>
+            <td align="center"> {{book.ISBN}}</td>
+            <td align="center"> {{book.name}}</td>
+            <td align="center"> {{book.author}}</td>
+            <td align="center"> {{book.publisher}}</td>
+            <td align="center"><a href="{{url_for('user.user_book_detail', book_id=book.id)}}">查看</a></td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}
+

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %} 用户主页 {% endblock %}
+{% block link %}
+<a href="{{ url_for('manager.manager_users') }}">返回</a> |
+<a href="{{url_for('manager.manager_user_detail', number=user.number)}}">修改</a> |
+<a href="{{url_for('manager.manager_user', number=user.number)}}?action=delete"
+   onclick="return confirm('是否要删除该用户？')">删除</a>
+{% endblock %}
+{% block body  %}
+<h2> 用户信息 </h2>
+{% if user %}
+学号: {{user.number}}<br>
+姓名: {{user.username}}<br>
+学院: {{user.school}}<br>
+{% endif %}
+<h2> 未还书籍 </h2>
+{% if results  %}
+{% for result in results %}
+书名：     {{result[0]}}<br>
+借阅日期：  {{result[1]}}<br>
+到期日期：  {{result[2]}}<br><br>
+{% endfor %}
+{% else %}
+无
+{% endif  %}
+{% endblock %}

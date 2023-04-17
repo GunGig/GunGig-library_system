@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %} 个人信息修改 {% endblock %}
+{% block link %} 
+	<a href="{{ url_for('user.user_main_page', number=session.get('number'))}}"> 返回 </a>
+{% endblock %}
+{% block body %}
+	<form action="" method=post>
+	  <dl>
+	    <dt>请输入新密码:</dt>
+	    <dd><input type=password name=password size=30> </dd>
+	    <dt>请确认新密码:</dt>
+	    <dd><input type="password" name="password2" size="30"> </dd>
+	  </dl>
+	  <div class=actions><input type=submit value="提交"></div>
+	</form>
+{% endblock %}

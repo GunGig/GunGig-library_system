@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block title%} 管理员主页 {% endblock %}
+{% block link%} 
+	<a href="{{ url_for('login.logout') }}"> 注销 [{{ session['username'] }}]</a> |
+	<a href="{{ url_for('manager.manager_books') }}"> 图书管理 </a> |
+	<a href="{{ url_for('manager.manager_users') }}"> 用户管理 </a> |
+{%  endblock%}

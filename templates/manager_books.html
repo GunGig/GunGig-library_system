@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block title%} 图书管理 {% endblock %}
+{% block link%}
+<a href="{{ url_for('manager.manager_main_page')}}"> 返回 </a> |
+<a href="{{ url_for('manager.manager_books_add') }}"> 添加书籍 </a> |
+<a href="{{ url_for('manager.manager_books_delete') }}"> 删除书籍 </a> |
+<a href="{{ url_for('manager.manager_book_recommend') }}"> 荐购清单 </a> |
+<a href="{{ url_for('manager.manager_lease_expired') }}"> 超期管理</a>
+{%  endblock%}
+{% block body%}
+<h2> 图书管理 </h2>
+<table width="600" border="1" , align="center">
+    <tr>
+        <th align="center"> 编号</th>
+        <th align="center"> ISBN</th>
+        <th align="center"> 书名</th>
+        <th align="center"> 作者</th>
+        <th align="center"> 出版商</th>
+        <th align="center"> 查看信息</th>
+        <th align="center"> 借阅管理</th>
+        <th align="center"> 删除书籍</th>
+    </tr>
+    {% for book in books%}
+    <tr>
+        <td align="center"> {{book.id}}
+        </th>
+        <td align="center"> {{book.ISBN}}</td>
+        <td align="center"> {{book.name}}</td>
+        <td align="center"> {{book.author}}</td>
+        <td align="center"> {{book.publisher}}</td>
+        <td align="center"><a href="{{url_for('manager.manager_book', book_id=book.id)}}"> 点击进入 </a></td>
+        <td align="center"><a href="{{ url_for('manager.manager_lease', book_id=book.id) }}"> 点击进入 </a></td>
+        <td align="center"><a href="{{ url_for('manager.manager_books')}}?action=delete&book_id={{book.id}}"
+        onclick="return confirm('是否要删除该书籍？')"> 点击删除 </a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock%}

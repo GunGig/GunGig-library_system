@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %} 欢迎使用 {% endblock %}
+{% block link %}
+<a href="{{ url_for('login.logout')}}"> 注销[{{number}}] </a> |
+<a href="{{ url_for('user.user_book_search')}}"> 书籍查询 </a> |
+<a href="{{ url_for('user.user_detail', number=number)}}"> 修改密码 </a> |
+<a href="{{ url_for('user.user_history', number=number)}}"> 借阅记录 </a> |
+<a href="{{ url_for('user.user_book_recommend', number=number)}}"> 图书荐购 </a>
+
+{% endblock %}
+
+{% block body %}
+<h2> 欢迎使用 </h2>
+{% endblock %}

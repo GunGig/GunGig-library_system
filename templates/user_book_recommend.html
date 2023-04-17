@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %} 添加书籍 {% endblock %}
+{% block link %}
+<a href="{{ url_for('user.user_main_page', number=session.get('number'))}}">
+    返回 </a>
+{% endblock %}
+{% block body %}
+<h2> 图书荐购 </h2>
+<form action="" method="POST">
+    ISBN: </br>
+    <input type="text" name="ISBN" size="30"> </br>
+    书名:</br>
+    <input type="text" name="name" size="30"> </br>
+    作者:</br>
+    <input type="text" name="author" size="30"> </br>
+    出版社:</br>
+    <input type="text" name="publisher" size="30"></br></br>
+    <input type="submit" value="推荐">
+</form>
+
+{% endblock %} 

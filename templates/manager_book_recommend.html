@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title%} 图书管理 {% endblock %}
+{% block link%}
+<a href="{{ url_for('manager.manager_main_page')}}"> 返回 </a> |
+{%  endblock%}
+{% block body%}
+<h2> 图书荐购管理 </h2>
+<table width="600" border="1" , align="center">
+    <tr>
+        <th align="center"> 推荐人</th>
+        <th align="center"> ISBN</th>
+        <th align="center"> 书名</th>
+        <th align="center"> 作者</th>
+        <th align="center"> 出版商</th>
+        <th align="center"> 操作</th>
+    </tr>
+    {% for recommend in recommend_list %}
+    <tr>
+        <td align="center"> {{recommend.user_number}}</td>
+        <td align="center"> {{recommend.book_ISBN}}</td>
+        <td align="center"> {{recommend.book_name}}</td>
+        <td align="center"> {{recommend.book_author}}</td>
+        <td align="center"> {{recommend.book_publisher}}</td>
+        <td align="center"><a
+                href="{{url_for('manager.manager_book_recommend')}}?action=delete&rid={{recommend.id}}"> 删除 </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock%}

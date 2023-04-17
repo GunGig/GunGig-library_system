@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %} 图书详情 {% endblock %}
+{% block link %}
+{% if book %}
+<a href="{{ url_for('user.user_book_search') }}"> 返回 </a>
+{% endif %}
+{% endblock %}
+{% block body %}
+<h2>书籍信息</h2>
+{% if book %}
+ISBN:{{book.ISBN}}</br>
+书名:{{book.name}}</br>
+作者:{{book.author}}</br>
+出版社:{{book.publisher}}</br>
+{% if book.available %}
+状态:在库（<a href="{{ url_for('user.user_book_detail', book_id=book.id) }}?action=order">预借</a>）</br>
+{% else %}
+状态:借出</br>
+{% endif %}
+{% endif %}
+<h2>发布书评</h2>
+<form action="" method="POST">
+    <input type="text" name="action" value="comment" hidden="true"></br>
+    <textarea name="comment" style="height:80px;width:550px;resize:none;"></textarea></br>
+    <input type=submit value="发布">
+</form>
+<h2>读者书评</h2>
+<table width="600" border="1" , align="center">
+    <tr>
+        <th align="center"> 学号</th>
+        <th align="center"> 评论</th>
+    </tr>
+    {% for comment in comments %}
+    <tr>
+        <td align="center"> {{comment.user_number}}</td>
+        <td align="center"> {{comment.content}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %} 

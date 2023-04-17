@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %} 添加书籍 {% endblock %}
+{% block link %}
+<a href="{{url_for('manager.manager_books')}}"> 返回 </a>
+{% endblock %}
+{% block body %}
+<h2> 添加书籍 </h2>
+<form action="" method="POST">
+  ISBN:</br>
+  <input type="text" name="ISBN" size="30"></br>
+  书名:</br>
+  <input type="text" name="name" size="30"></br>
+  作者:</br>
+  <input type="text" name="author" size="30"></br>
+  出版社:</br>
+  <input type="text" name="publisher" size="30"></br>
+    数量:</br>
+  <input type="text" name="shul" size="30"></br>
+  </tr>
+  <input type="submit" value="添加">
+</form>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

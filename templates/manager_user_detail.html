@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %} 用户信息修改 {% endblock %}
+{% block link %}
+<a href="{{ url_for('manager.manager_user', number=user.number)}}"> 返回 </a>
+{% endblock %}
+{% block body %}
+<form action="" method="POST">
+    姓名:</br>
+    <input type="text" name="username" size=30 value={{user.username}}> </br>
+    请输入新密码(不输入就是不修改):</br>
+    <input type="password" name="password" size=30> </br>
+    学院:</br>
+    <input type="text" name="school" size=30 value={{user.school}}> </br></br>
+    <input type="submit" value="确定">
+</form>
+
+{% endblock %}
